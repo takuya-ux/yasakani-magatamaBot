@@ -48,7 +48,7 @@ def handle_message(event):
     #     event.reply_token,
     #     TextSendMessage(text=message))
 
-    mecab = MeCab.Tagger("-Ochasen")
+    mecab = MeCab.Tagger()
     message = event.message.text
     line_bot_api.reply_message(
         event.reply_token,
