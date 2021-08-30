@@ -11,6 +11,7 @@ from linebot.models import (
 )
 import os
 import random
+import MeCab
 
 app = Flask(__name__)
 

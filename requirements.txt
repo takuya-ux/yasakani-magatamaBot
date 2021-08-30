@@ -1,2 +1,4 @@
 Flask
 line-bot-sdk
+mecab-python3
+unidic-lite
