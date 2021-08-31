@@ -85,7 +85,7 @@ def handle_message(event):
         return " " . join(word_list)
     
     #メッセージをテキストファイルに追加
-    post_text = event.event.message.text
+    post_text = event.message.text
     # with open(TXT_NAME + ".txt", mode='a' , encoding="utf8") as f:
     #     f.write("," + post_text)
 
