@@ -55,6 +55,7 @@ def handle_message(event):
     mecab = MeCab.Tagger()
     message = event.message.text
     result_text = mecab.parse(message)
+    result_text.sub("...$","")
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=result_text))
