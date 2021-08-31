@@ -53,69 +53,70 @@ def handle_message(event):
     #     TextSendMessage(text=message))
 
     mecab = MeCab.Tagger()
-    # message = event.message.text
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text=mecab.parse(message)))
+    message = event.message.text
+    result_text = mecab.parse(message)
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=result_text))
 
-    FONT_PATH = "ipaexg.ttf"
+    # FONT_PATH = "ipaexg.ttf"
     #####################################
-    TXT_NAME = "wakaDataSet"
+    # TXT_NAME = "wakaDataSet"
     #####################################
 
-    def get_word_str(text):
-        import MeCab
-        import re
+    # def get_word_str(text):
+    #     import MeCab
+    #     import re
     
-        mecab = MeCab.Tagger()
-        parsed = mecab.parse(text)
-        lines = parsed.split('\n')
-        lines = lines[0:-2]
-        word_list = []
+    #     mecab = MeCab.Tagger()
+    #     parsed = mecab.parse(text)
+    #     lines = parsed.split('\n')
+    #     lines = lines[0:-2]
+    #     word_list = []
     
-        for line in lines:
-            tmp = re.split('\t|,', line)
+    #     for line in lines:
+    #         tmp = re.split('\t|,', line)
     
-            # 名詞のみ対象
-            if tmp[1] in ["名詞"]:
-                # さらに絞り込み
-                if tmp[2] in ["一般", "固有名詞"]:
-                    word_list.append(tmp[0])
+    #         # 名詞のみ対象
+    #         if tmp[1] in ["名詞"]:
+    #             # さらに絞り込み
+    #             if tmp[2] in ["一般", "固有名詞"]:
+    #                 word_list.append(tmp[0])
     
-        return " " . join(word_list)
+    #     return " " . join(word_list)
     
     #メッセージをテキストファイルに追加
-    post_text = event.message.text
+    # post_text = event.message.text
     # with open(TXT_NAME + ".txt", mode='a' , encoding="utf8") as f:
     #     f.write("," + post_text)
 
 
     # テキストファイル読み込み
-    read_text = open(TXT_NAME + ".txt", encoding="utf8").read()
+    # read_text = open(TXT_NAME + ".txt", encoding="utf8").read()
 
     ####################################################
     # マスクを作成する
-    mask_array = np.array(Image.open('tree080948.png'))
+    # mask_array = np.array(Image.open('tree080948.png'))
     #####################################################
 
     # 文字列取得
-    word_str = get_word_str(read_text)
+    # word_str = get_word_str(read_text)
     
     # 画像作成
-    wc = WordCloud(font_path=FONT_PATH, mask=mask_array, background_color='white', colormap='bone', contour_width=3).generate(word_str)
+    # wc = WordCloud(font_path=FONT_PATH, mask=mask_array, background_color='white', colormap='bone', contour_width=3).generate(word_str)
     
     # 画像保存（テキストファイル名で）
     # wc.to_file(TXT_NAME + ".png")
 
     # PILで表示する
-    image_array = wc.to_array()
-    img = Image.fromarray(image_array)
-    img.to_file("/static/images" + TXT_NAME + ".png")
+    # image_array = wc.to_array()
+    # img = Image.fromarray(image_array)
+    # img.to_file("/static/images" + TXT_NAME + ".png")
 
 
-    line_bot_api.reply_message(
-    event.reply_token,
-    TextSendMessage(text=mecab.parse(post_text)))
+    # line_bot_api.reply_message(
+    # event.reply_token,
+    # TextSendMessage(text=mecab.parse(post_text)))
 
         
 
